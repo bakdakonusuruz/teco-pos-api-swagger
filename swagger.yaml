@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Uye.app API Örnekler
+  title: Uye.app API Examples
   version: 1.0.0
 servers:
   - url: https://prod.api.uye.app
