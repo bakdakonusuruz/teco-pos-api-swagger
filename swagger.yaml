@@ -143,12 +143,12 @@ paths:
           in: header
           schema:
             type: string
-          example: 5422c32d
+          example: lexigram
         - name: X-Branch-Id
           in: header
           schema:
             type: integer
-          example: '101'
+          example: '1'
         - name: X-Pos-Id
           in: header
           schema:
@@ -187,7 +187,7 @@ paths:
               type: object
               example:
                 customer:
-                  phoneNumber: '5438835885'
+                  commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
                 purchase:
                   items:
                     - lineId: '1'
@@ -220,7 +220,7 @@ paths:
           in: header
           schema:
             type: string
-          example: 5422c32d
+          example: lexigram
         - name: X-Branch-Id
           in: header
           schema:
@@ -274,7 +274,7 @@ paths:
           in: header
           schema:
             type: string
-          example: 5422c32d
+          example: lexigram
         - name: X-Branch-Id
           in: header
           schema:
@@ -320,7 +320,7 @@ paths:
               type: object
               example:
                 customers:
-                  - phoneNumber: '5438835885'
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
                 purchase:
                   openTime: '2017-09-20T07:09:24Z'
                   transactionId: '236645'
@@ -350,12 +350,12 @@ paths:
           in: header
           schema:
             type: string
-          example: 5422c32d
+          example: lexigram
         - name: X-Branch-Id
           in: header
           schema:
             type: integer
-          example: '10'
+          example: '1'
         - name: X-Pos-Id
           in: header
           schema:
@@ -404,12 +404,12 @@ paths:
           in: header
           schema:
             type: string
-          example: 5422c32d
+          example: lexigram
         - name: X-Branch-Id
           in: header
           schema:
             type: integer
-          example: '10'
+          example: '1'
         - name: X-Pos-Id
           in: header
           schema:
@@ -464,7 +464,7 @@ paths:
           in: header
           schema:
             type: string
-          example: 5422c32d
+          example: lexigram
       responses:
         '200':
           description: Successful response
@@ -496,7 +496,7 @@ paths:
           in: header
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
         - name: X-Branch-Id
           in: header
           schema:
@@ -549,11 +549,6 @@ paths:
                 TransactionSourceName: XPOS
                 BranchID: '102'
       parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
         - name: InputType
           in: query
           schema:
@@ -568,7 +563,7 @@ paths:
           in: query
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
       responses:
         '200':
           description: Successful response
@@ -613,16 +608,11 @@ paths:
                 RedeemItems:
                   - AssetKey: uY1Wa82zb5FxAHJS5xL4
                 Customers:
-                  - phoneNumber: '5438835885'
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
                 PosID: '1'
                 TransactionID: '10331'
-                TransactionSourceName: XPOS
+                TransactionSourceName: POSTMAN
       parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
         - name: InputType
           in: query
           schema:
@@ -637,7 +627,7 @@ paths:
           in: query
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
       responses:
         '200':
           description: Successful response
@@ -657,7 +647,7 @@ paths:
               type: object
               example:
                 Customers:
-                  - PhoneNumber: '5438835885'
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
                 RedeemItems: []
                 Items:
                   - ItemCode: '11174'
@@ -672,14 +662,9 @@ paths:
                 TotalSum: 2000
                 TransactionID: '1736734'
                 TimeStamp: 1433286759784
-                BranchID: '101'
+                BranchID: '1'
                 PosID: '1'
       parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
         - name: InputType
           in: query
           schema:
@@ -694,7 +679,7 @@ paths:
           in: query
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
       responses:
         '200':
           description: Successful response
@@ -712,21 +697,16 @@ paths:
               type: object
               example:
                 Customers:
-                  - PhoneNumber: '5438835885'
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
                 TotalSum: 355
                 TimeStamp: 637468549542125000
                 TransactionID: '289036'
-                BranchID: '102'
+                BranchID: '1'
                 PosID: '1'
                 Cashier: Administrator
-                TransactionSource: POS
-                TransactionSourceName: XPOS
+                TransactionSource: TEST
+                TransactionSourceName: POSTMAN
       parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
         - name: InputType
           in: query
           schema:
@@ -741,7 +721,7 @@ paths:
           in: query
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
       responses:
         '200':
           description: Successful response
@@ -760,11 +740,6 @@ paths:
               example:
                 PaymentUID: dbe2d876-fc49-439a-a5ed-242cebfaaa99
       parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
         - name: InputType
           in: query
           schema:
@@ -779,7 +754,7 @@ paths:
           in: query
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
       responses:
         '200':
           description: Successful response
@@ -797,7 +772,7 @@ paths:
               type: object
               example:
                 Customers:
-                  - PhoneNumber: '5438835885'
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
                 Items:
                   - ItemCode: '1125'
                     ItemName: RISTRETTO
@@ -818,16 +793,11 @@ paths:
                 TotalSum: 4000
                 TransactionID: '2897036'
                 TimeStamp: 637468549677783700
-                BranchID: '102'
+                BranchID: '1'
                 PosID: '1'
-                TransactionSource: POS
-                TransactionSourceName: XPOS
+                TransactionSource: TEST
+                TransactionSourceName: POSTMAN
       parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
         - name: InputType
           in: query
           schema:
@@ -842,7 +812,7 @@ paths:
           in: query
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
       responses:
         '200':
           description: Successful response
@@ -861,11 +831,6 @@ paths:
               example:
                 Confirmation: 800e026f-2916-428e-910c-21db276284d6
       parameters:
-        - name: Content-Type
-          in: header
-          schema:
-            type: string
-          example: application/json
         - name: InputType
           in: query
           schema:
@@ -880,7 +845,7 @@ paths:
           in: query
           schema:
             type: string
-          example: bab3adde
+          example: lexigram
       responses:
         '200':
           description: Successful response
