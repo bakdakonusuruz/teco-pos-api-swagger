@@ -472,7 +472,7 @@ paths:
   /api/v4/updateMember:
     post:
       tags:
-        - V2.8
+        - V4
       summary: updateMember
       description: This call is for updating members details.
       requestBody:
