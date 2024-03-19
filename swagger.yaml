@@ -469,7 +469,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v4/updateMember:
+  /api/v4/advanced/updateMember:
     post:
       tags:
         - V4
