@@ -1,0 +1,853 @@
+openapi: 3.0.0
+info:
+  title: Uye.app API Examples
+  version: 1.0.0
+servers:
+  - url: https://prod.api.uye.app
+tags:
+  - name: V4
+  - name: V2.8
+paths:
+  /api/v4/getMemberDetails:
+    post:
+      tags:
+        - V4
+      summary: getMemberDetails
+      description: This API call checks if a customer is a member, shows their details like name and points, and lists their gifts. The cashier can then select gifts from this list to give to the customer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer:
+                  phoneNumber: '5438835885'
+                purchase:
+                  openTime: '2017-09-20T07:09:24Z'
+                  transactionId: 3f09101f66
+                  totalAmount: 1200
+                  orderType: dineIn
+                  employee: '987'
+                  items:
+                    - lineId: '1'
+                      code: '123'
+                      name: Tatlı
+                      departmentCode: '56'
+                      departmentName: Tatlılar
+                      quantity: 1
+                      grossAmount: 1000
+                      netAmount: 1000
+                    - lineId: '2'
+                      code: '765'
+                      name: Tuzlu
+                      departmentCode: '57'
+                      departmentName: Tuzlular
+                      quantity: 1
+                      grossAmount: 2000
+                      netAmount: 2000
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+        - name: X-Branch-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Pos-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Source-Type
+          in: header
+          schema:
+            type: string
+          example: Test
+        - name: X-Source-Name
+          in: header
+          schema:
+            type: string
+          example: Postman
+        - name: X-Source-Version
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v4/getBenefits:
+    post:
+      tags:
+        - V4
+      summary: getBenefits
+      description: This API call is designed to add benefits or promotions to a customer's purchase, either by redeeming the customer's gift assets or by automatically applying discount deals. If this API is called multiple times for the same transaction, make sure to remove any previously applied benefits and apply the new ones each time.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customers:
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
+                purchase:
+                  openTime: '2017-09-20T07:09:24Z'
+                  transactionId: 3f09101f66
+                  totalAmount: 7500
+                  orderType: dineIn
+                  employee: '987'
+                  items:
+                    - lineId: '1'
+                      code: '1062'
+                      name: Large Coffee
+                      departmentCode: '56'
+                      departmentName: Beverages
+                      quantity: 1
+                      grossAmount: 2000
+                      netAmount: 2000
+                    - lineId: '2'
+                      code: '33'
+                      name: Large Coffee
+                      departmentCode: '56'
+                      departmentName: Beverages
+                      quantity: 3
+                      grossAmount: 3000
+                      netAmount: 3000
+                    - lineId: '3'
+                      code: '3333'
+                      name: Large Coffee
+                      departmentCode: '56'
+                      departmentName: Beverages
+                      quantity: 1
+                      grossAmount: 2500
+                      netAmount: 2500
+                redeemAssets:
+                  - key: rkWm6wE3vRKfCiG0Fu8h
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+        - name: X-Branch-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Pos-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Source-Type
+          in: header
+          schema:
+            type: string
+          example: Test
+        - name: X-Source-Name
+          in: header
+          schema:
+            type: string
+          example: Postman
+        - name: X-Source-Version
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v4/payment:
+    post:
+      tags:
+        - V4
+      summary: payment
+      description: With this API call, customers can use their points to pay for purchases. The payment can be verified with a verification code (optional).
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer:
+                  commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
+                purchase:
+                  items:
+                    - lineId: '1'
+                      departmentCode: '210066'
+                      departmentName: Appetizers
+                      code: '1100454'
+                      name: Salmon Tartar
+                      quantity: 1
+                      grossAmount: 5400
+                      netAmount: 5400
+                    - lineId: '2'
+                      departmentCode: '210070'
+                      departmentName: Inside Out
+                      code: '1100542'
+                      name: Crunchy Roll
+                      quantity: 1
+                      grossAmount: 5800
+                      netAmount: 5800
+                  openTime: '2011-04-17T01:26:12Z'
+                  totalAmount: 11200
+                  transactionId: '10087352'
+                amount: 1000
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+        - name: X-Branch-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Pos-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Source-Type
+          in: header
+          schema:
+            type: string
+          example: Test
+        - name: X-Source-Name
+          in: header
+          schema:
+            type: string
+          example: Postman
+        - name: X-Source-Version
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v4/cancelPayment:
+    post:
+      tags:
+        - V4
+      summary: cancelPayment
+      description: With this API call, a point payment can be cancelled (with the confirmation code from the payment call)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                confirmation: 203c3e99-bb66-4b45-bc0c-2e07a66292a1
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+        - name: X-Branch-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Pos-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Source-Type
+          in: header
+          schema:
+            type: string
+          example: Test
+        - name: X-Source-Name
+          in: header
+          schema:
+            type: string
+          example: Postman
+        - name: X-Source-Version
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v4/submitPurchase:
+    post:
+      tags:
+        - V4
+      summary: submitPurchase
+      description: After the payment, this API call is used to send the transaction and member details to the loyalty engine (i.e. amount paid and contents of the shopping cart). Non-member purchases should be sent as well.
+
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customers:
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
+                purchase:
+                  openTime: '2017-09-20T07:09:24Z'
+                  transactionId: '236645'
+                  totalAmount: 10000
+                  orderType: dineIn
+                  employee: '987'
+                  items:
+                    - lineId: '1'
+                      code: banaBirOdulCek
+                      name: Large Coffee
+                      departmentCode: '56'
+                      departmentName: Beverages
+                      quantity: 1
+                      grossAmount: 10000
+                      netAmount: 10000
+                  meansOfPayment:
+                    - type: cash
+                      amount: 10000
+                redeemAssets: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+        - name: X-Branch-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Pos-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Source-Type
+          in: header
+          schema:
+            type: string
+          example: Test
+        - name: X-Source-Name
+          in: header
+          schema:
+            type: string
+          example: Postman
+        - name: X-Source-Version
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v4/cancelPurchase:
+    post:
+      tags:
+        - V4
+      summary: cancelPurchase
+      description: This API call is to cancel a transaction. The confirmation code from the submitPurchase call will be used to identify the transaction.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                confirmation: 7aa9f6b9-4ca4-40b5-8185-0b4310275acf
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+        - name: X-Branch-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Pos-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Source-Type
+          in: header
+          schema:
+            type: string
+          example: Test
+        - name: X-Source-Name
+          in: header
+          schema:
+            type: string
+          example: Postman
+        - name: X-Source-Version
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v4/advanced/registerMember:
+    post:
+      tags:
+        - V4
+      summary: registerMember
+      description: This call is for registering a new member to the loyalty club.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                registrationData:
+                  PhoneNumber: '5438835885'
+                  FirstName: Burak
+                  LastName: Bayrakaroglu
+                  Email: burakbayraktaroglu@gmail.com
+                  TermsOfUse: 'false'
+                  Gdpr: 'false'
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v4/updateMember:
+    post:
+      tags:
+        - V2.8
+      summary: updateMember
+      description: This call is for updating members details.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customer:
+                  phoneNumber: '5532477878'
+                registrationData:
+                  AllowSMS: false
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          example: lexigram
+        - name: X-Branch-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Pos-Id
+          in: header
+          schema:
+            type: integer
+          example: '1'
+        - name: X-Source-Type
+          in: header
+          schema:
+            type: string
+          example: Test
+        - name: X-Source-Name
+          in: header
+          schema:
+            type: string
+          example: Postman
+        - name: X-Source-Version
+          in: header
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /alpha/api/GetMemberDetails:
+    post:
+      tags:
+        - V2.8
+      summary: getMemberDetails
+      description: >-
+        This API call checks if a customer is a member, shows their details like name and points, and lists their gifts. The cashier can then select gifts from this list to give to the customer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                Customers:
+                  - PhoneNumber: '5438835885'
+                ExpandAssets: true
+                IncludeArchivedAssets: false
+                TestRedeemConditions: true
+                TransactionSource: POS
+                TransactionSourceName: XPOS
+                BranchID: '102'
+      parameters:
+        - name: InputType
+          in: query
+          schema:
+            type: string
+          example: json
+        - name: MimeType
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: api-key
+          in: query
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /alpha/api/Redeem:
+    post:
+      tags:
+        - V2.8
+      summary: Redeem
+      description: >-
+        This API call is to allow redeem gifts.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                TimeStamp: 637602489987346000
+                Items:
+                  - ItemCode: '1073'
+                    ItemName: HAMBURGER MENÜ
+                    DepartmentCode: DPT^YS.MENÜLER
+                    DepartmentName: YS.MENÜLER
+                    Quantity: 1
+                    Price: 4650
+                  - ItemCode: '1074'
+                    ItemName: BURGER MENÜ
+                    DepartmentCode: DPT^YS.MENÜLER
+                    DepartmentName: YS.MENÜLER
+                    Quantity: 1
+                    Price: 5000
+                  - ItemCode: '1062'
+                    ItemName: MAG - MUZLU
+                    DepartmentCode: DPT^TATLI
+                    DepartmentName: TATLI
+                    Quantity: 1
+                    Price: 2200
+                TotalSum: 9650
+                BranchID: '101'
+                TransactionSource: POS
+                RedeemItems:
+                  - AssetKey: uY1Wa82zb5FxAHJS5xL4
+                Customers:
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
+                PosID: '1'
+                TransactionID: '10331'
+                TransactionSourceName: POSTMAN
+      parameters:
+        - name: InputType
+          in: query
+          schema:
+            type: string
+          example: json
+        - name: MimeType
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: api-key
+          in: query
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /alpha/api/getMemberBenefits:
+    post:
+      tags:
+        - V2.8
+      summary: getMemberBenefits
+      description: >-
+        This API call is designed to add promotions to a customer's purchase by automatically applying discount deals. If this API is called multiple times for the same transaction, make sure to remove any previously applied deals and apply the new ones each time.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                Customers:
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
+                RedeemItems: []
+                Items:
+                  - ItemCode: '11174'
+                    ItemName: xxxxxx
+                    DepartmentCode: xxxxxx
+                    DepartmentName: xxxxxx
+                    Quantity: 1
+                    Price: 2000
+                    Tags:
+                      - xxxxx
+                      - xxxxxxxxx
+                TotalSum: 2000
+                TransactionID: '1736734'
+                TimeStamp: 1433286759784
+                BranchID: '1'
+                PosID: '1'
+      parameters:
+        - name: InputType
+          in: query
+          schema:
+            type: string
+          example: json
+        - name: MimeType
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: api-key
+          in: query
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /alpha/api/PayWithBudget:
+    post:
+      tags:
+        - V2.8
+      summary: PayWithBudget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                Customers:
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
+                TotalSum: 355
+                TimeStamp: 637468549542125000
+                TransactionID: '289036'
+                BranchID: '1'
+                PosID: '1'
+                Cashier: Administrator
+                TransactionSource: TEST
+                TransactionSourceName: POSTMAN
+      parameters:
+        - name: InputType
+          in: query
+          schema:
+            type: string
+          example: Json
+        - name: MimeType
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: api-key
+          in: query
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /alpha/api/CancelBudgetPayment:
+    post:
+      tags:
+        - V2.8
+      summary: CancelBudgetPayment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                PaymentUID: dbe2d876-fc49-439a-a5ed-242cebfaaa99
+      parameters:
+        - name: InputType
+          in: query
+          schema:
+            type: string
+          example: json
+        - name: MimeType
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: api-key
+          in: query
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /alpha/api/SubmitPurchase:
+    post:
+      tags:
+        - V2.8
+      summary: SubmitPurhcase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                Customers:
+                  - commonExtId: 3e460f90-9857-490a-9035-06c2147ad345
+                Items:
+                  - ItemCode: '1125'
+                    ItemName: RISTRETTO
+                    DepartmentCode: DPT^KAHVE
+                    DepartmentName: KAHVE
+                    Quantity: 1
+                    Price: 3000
+                  - ItemCode: '1028'
+                    ItemName: CORTADO
+                    DepartmentCode: DPT^KAHVE
+                    DepartmentName: KAHVE
+                    Quantity: 1
+                    Price: 1000
+                Payments:
+                  - Type: cash
+                    Sum: 4000
+                Cashier: Administrator
+                TotalSum: 4000
+                TransactionID: '2897036'
+                TimeStamp: 637468549677783700
+                BranchID: '1'
+                PosID: '1'
+                TransactionSource: TEST
+                TransactionSourceName: POSTMAN
+      parameters:
+        - name: InputType
+          in: query
+          schema:
+            type: string
+          example: json
+        - name: MimeType
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: api-key
+          in: query
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /alpha/api/CancelPurchase:
+    post:
+      tags:
+        - V2.8
+      summary: CancelPurchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                Confirmation: 800e026f-2916-428e-910c-21db276284d6
+      parameters:
+        - name: InputType
+          in: query
+          schema:
+            type: string
+          example: json
+        - name: MimeType
+          in: query
+          schema:
+            type: string
+          example: application/json
+        - name: api-key
+          in: query
+          schema:
+            type: string
+          example: lexigram
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
